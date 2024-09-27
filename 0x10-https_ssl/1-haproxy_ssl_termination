@@ -33,19 +33,19 @@ defaults
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
 
-frontend kingbygone-frontend
+frontend susanbudu-frontend
         bind *:80
         mode http
         http-request redirect scheme https code 301 unless { ssl_fc }
         http-request set-header X_Forwarded-Proto http
         default_backend clickviral-backend
 
-frontend kingbygone-frontend-https
+frontend susanbudu-frontend-https
         bind *:443 ssl crt /etc/haproxy/certs/clickviral.tech.pem
         http-request set-header X-Forwarded-Proto https
         default_backend kingbygone-backend
 
-backend kingbygone-backend
+backend susanbudu-backend
         balance roundrobin
         server 434981-web-01 100.25.159.232:80 check
         server 434891-web-02 100.26.255.91:80 check
